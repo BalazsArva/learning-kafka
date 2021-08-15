@@ -11,18 +11,13 @@ namespace LearningKafka.Infrastructure.Kafka
         // This helps identifying concurrently running clients.
         private static readonly string ClientId = Guid.NewGuid().ToString("n");
 
-        public static IServiceCollection AddKafka(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddKafkaProducer(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<KafkaOptions>(opts => configuration.GetSection(KafkaOptions.SectionName).Bind(opts));
+            services.Configure<KafkaProducerOptions>(opts => configuration.GetSection(KafkaProducerOptions.DefaultSectionName).Bind(opts));
 
-            return services;
-        }
-
-        public static IServiceCollection AddKafkaProducer(this IServiceCollection services)
-        {
             services.AddSingleton(services =>
             {
-                var opts = services.GetRequiredService<IOptions<KafkaOptions>>();
+                var opts = services.GetRequiredService<IOptions<KafkaProducerOptions>>();
 
                 var producerConfig = new ProducerConfig
                 {
@@ -36,17 +31,19 @@ namespace LearningKafka.Infrastructure.Kafka
             return services;
         }
 
-        public static IServiceCollection AddKafkaConsumer(this IServiceCollection services)
+        public static IServiceCollection AddKafkaConsumer(this IServiceCollection services, IConfiguration configuration)
         {
+            services.Configure<KafkaConsumerOptions>(opts => configuration.GetSection(KafkaConsumerOptions.DefaultSectionName).Bind(opts));
+
             services.AddSingleton(services =>
             {
-                var opts = services.GetRequiredService<IOptions<KafkaOptions>>();
+                var opts = services.GetRequiredService<IOptions<KafkaConsumerOptions>>();
 
                 var consumerConfig = new ConsumerConfig
                 {
                     BootstrapServers = string.Join(",", opts.Value.Servers),
                     ClientId = $"{opts.Value.ClientIdPrefix}-{ClientId}",
-                    GroupId = opts.Value.GroupId,
+                    GroupId = opts.Value.AppId,
                     AutoOffsetReset = AutoOffsetReset.Earliest,
                 };
 

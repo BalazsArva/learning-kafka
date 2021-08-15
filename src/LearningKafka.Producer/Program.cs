@@ -15,10 +15,7 @@ namespace LearningKafka.Producer
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services
-                        .AddKafka(hostContext.Configuration)
-                        .AddKafkaProducer();
-
+                    services.AddKafkaProducer(hostContext.Configuration);
                     services.AddHostedService<ProducerService>();
                 });
     }

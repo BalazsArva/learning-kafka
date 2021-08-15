@@ -1,13 +1,13 @@
 ﻿namespace LearningKafka.Infrastructure.Kafka
 {
-    public class KafkaOptions
+    public class KafkaProducerOptions
     {
-        public const string SectionName = "Kafka";
+        public const string DefaultSectionName = "Kafka:Producer";
 
         public string[] Servers { get; set; }
 
         public string ClientIdPrefix { get; set; }
 
-        public string GroupId { get; set; }
+        public string Topic { get; set; }
     }
 }

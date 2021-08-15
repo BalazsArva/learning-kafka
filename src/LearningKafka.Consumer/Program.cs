@@ -15,10 +15,7 @@ namespace LearningKafka.Consumer
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services
-                        .AddKafka(hostContext.Configuration)
-                        .AddKafkaConsumer();
-
+                    services.AddKafkaConsumer(hostContext.Configuration);
                     services.AddHostedService<ConsumerService>();
                 });
     }
