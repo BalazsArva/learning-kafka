@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningKafka.Producer", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningKafka.Consumer", "LearningKafka.Consumer\LearningKafka.Consumer.csproj", "{0B35EF98-A784-42CE-B6B2-ED0B23D21DF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningKafka.Infrastructure.Kafka", "LearningKafka.Infrastructure.Kafka\LearningKafka.Infrastructure.Kafka.csproj", "{7F13779B-DEA2-4A40-9635-C21DED7761A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0B35EF98-A784-42CE-B6B2-ED0B23D21DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B35EF98-A784-42CE-B6B2-ED0B23D21DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B35EF98-A784-42CE-B6B2-ED0B23D21DF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F13779B-DEA2-4A40-9635-C21DED7761A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F13779B-DEA2-4A40-9635-C21DED7761A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F13779B-DEA2-4A40-9635-C21DED7761A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F13779B-DEA2-4A40-9635-C21DED7761A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
