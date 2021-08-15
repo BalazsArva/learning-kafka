@@ -2,27 +2,32 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
+using LearningKafka.Infrastructure.Kafka;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace LearningKafka.Consumer
 {
     public class ConsumerService : BackgroundService
     {
+        private readonly IOptions<KafkaConsumerOptions> kafkaConsumerOptions;
         private readonly ConsumerConfig consumerConfig;
         private readonly ILogger<ConsumerService> logger;
 
         public ConsumerService(
+            IOptions<KafkaConsumerOptions> kafkaConsumerOptions,
             ConsumerConfig consumerConfig,
             ILogger<ConsumerService> logger)
         {
+            this.kafkaConsumerOptions = kafkaConsumerOptions ?? throw new ArgumentNullException(nameof(kafkaConsumerOptions));
             this.consumerConfig = consumerConfig ?? throw new ArgumentNullException(nameof(consumerConfig));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            const string topic = "kafka-dotnet-demo";
+            var topic = kafkaConsumerOptions.Value.Topic;
             var groupId = consumerConfig.GroupId;
 
             using var consumer = new ConsumerBuilder<Ignore, string>(consumerConfig).Build();
