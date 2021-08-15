@@ -8,6 +8,7 @@ namespace LearningKafka.Infrastructure.Kafka
 {
     public static class DependencySetup
     {
+        // This helps identifying concurrently running clients.
         private static readonly string ClientId = Guid.NewGuid().ToString("n");
 
         public static IServiceCollection AddKafka(this IServiceCollection services, IConfiguration configuration)
