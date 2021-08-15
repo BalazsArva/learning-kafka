@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using LearningKafka.Infrastructure.Kafka;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -18,7 +15,11 @@ namespace LearningKafka.Producer
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddHostedService<Worker>();
+                    services
+                        .AddKafka(hostContext.Configuration)
+                        .AddKafkaProducer();
+
+                    services.AddHostedService<ProducerService>();
                 });
     }
 }
