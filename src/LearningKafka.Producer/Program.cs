@@ -16,6 +16,7 @@ namespace LearningKafka.Producer
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddKafkaProducer(hostContext.Configuration);
+                    services.AddSingleton<IWeatherService, WeatherService>();
                     services.AddHostedService<ProducerService>();
                 });
     }

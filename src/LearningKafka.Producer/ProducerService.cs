@@ -11,15 +11,18 @@ namespace LearningKafka.Producer
 {
     public class ProducerService : BackgroundService
     {
+        private readonly IWeatherService weatherService;
         private readonly IOptions<KafkaProducerOptions> kafkaProducerOptions;
         private readonly ProducerConfig producerConfig;
         private readonly ILogger<ProducerService> logger;
 
         public ProducerService(
+            IWeatherService weatherService,
             IOptions<KafkaProducerOptions> kafkaProducerOptions,
             ProducerConfig producerConfig,
             ILogger<ProducerService> logger)
         {
+            this.weatherService = weatherService ?? throw new ArgumentNullException(nameof(weatherService));
             this.kafkaProducerOptions = kafkaProducerOptions ?? throw new ArgumentNullException(nameof(kafkaProducerOptions));
             this.producerConfig = producerConfig ?? throw new ArgumentNullException(nameof(producerConfig));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
