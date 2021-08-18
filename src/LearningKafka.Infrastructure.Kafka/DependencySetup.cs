@@ -1,5 +1,6 @@
 ﻿using System;
 using Confluent.Kafka;
+using LearningKafka.Infrastructure.Kafka.Serialization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -10,6 +11,12 @@ namespace LearningKafka.Infrastructure.Kafka
     {
         // This helps identifying concurrently running clients.
         private static readonly string ClientId = Guid.NewGuid().ToString("n");
+
+        public static IServiceCollection AddKafkaMessageSerialization(this IServiceCollection services)
+        {
+            return services
+                .AddSingleton<IMessageSerializer, JsonMessageSerializer>();
+        }
 
         public static IServiceCollection AddKafkaProducer(this IServiceCollection services, IConfiguration configuration)
         {
