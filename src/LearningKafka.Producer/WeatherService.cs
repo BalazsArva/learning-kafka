@@ -27,7 +27,7 @@ namespace LearningKafka.Producer
             {
                 Location = location,
                 Humidity = random.NextDouble(),
-                TemperatureCelsius = 20 + random.Next() * 20,
+                TemperatureCelsius = 20 + random.NextDouble() * 20,
                 Timestamp = DateTimeOffset.Now,
             };
         }

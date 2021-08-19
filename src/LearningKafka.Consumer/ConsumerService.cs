@@ -63,7 +63,7 @@ namespace LearningKafka.Consumer
                         "Temperature at {Location} is {TemperatureC:0.00}°C, humidity is {Humidity:0.00}% at {Timestamp}.",
                         message.Location,
                         message.TemperatureCelsius,
-                        message.Humidity,
+                        message.Humidity * 100,
                         message.Timestamp);
                 }
                 catch (OperationCanceledException e)
