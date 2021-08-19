@@ -18,6 +18,16 @@ namespace LearningKafka.Producer
                 GetDummyData("Miami"),
                 GetDummyData("Austin"),
                 GetDummyData("Houston"),
+                GetDummyData("Tampa"),
+                GetDummyData("Orlando"),
+                GetDummyData("Albuquerque"),
+                GetDummyData("San Antonio"),
+                GetDummyData("Nashville"),
+                GetDummyData("Los Angeles"),
+                GetDummyData("San Diego"),
+                GetDummyData("San José"),
+                GetDummyData("Sacramento"),
+                GetDummyData("Phoenix"),
             });
         }
 
