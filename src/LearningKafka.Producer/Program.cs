@@ -15,6 +15,7 @@ namespace LearningKafka.Producer
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddKafkaMessageSerialization();
                     services.AddKafkaProducer(hostContext.Configuration);
                     services.AddSingleton<IWeatherService, WeatherService>();
                     services.AddHostedService<ProducerService>();

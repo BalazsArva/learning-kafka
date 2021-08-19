@@ -15,6 +15,7 @@ namespace LearningKafka.Consumer
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddKafkaMessageSerialization();
                     services.AddKafkaConsumer(hostContext.Configuration);
                     services.AddHostedService<ConsumerService>();
                 });
