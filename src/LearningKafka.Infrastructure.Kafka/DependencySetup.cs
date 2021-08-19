@@ -30,6 +30,7 @@ namespace LearningKafka.Infrastructure.Kafka
                 {
                     BootstrapServers = string.Join(",", opts.Value.Servers),
                     ClientId = $"{opts.Value.ClientIdPrefix}-{ClientId}",
+                    Partitioner = Partitioner.Consistent,
                 };
 
                 return producerConfig;
